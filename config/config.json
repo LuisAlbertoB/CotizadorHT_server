@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "pezcadofrito.1",
+    "database": "cotizadorht_db",
+    "host": "127.0.0.1",
+    "dialect": "mariadb"
+  },
+  "test": {
+    "username": "root",
+    "password": "pezcadofrito.1",
+    "database": "cotizadorht_db",
+    "host": "127.0.0.1",
+    "dialect": "mariadb"
+  },
+  "production": {
+    "username": "root",
+    "password": "pezcadofrito.1",
+    "database": "cotizadorht_db",
+    "host": "127.0.0.1",
+    "dialect": "mariadb"
+  }
+}
