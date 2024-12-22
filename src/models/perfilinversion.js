@@ -3,13 +3,7 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class PerfilInversion extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here, if necessary
     }
   }
 
@@ -35,9 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'PerfilInversion',
-      tableName: 'PerfilInversiones', // Optional: to set a specific table name
-      timestamps: true, // This ensures created_at and updated_at are included
-      underscored: true, // Converts camelCase to snake_case for column 
+      tableName: 'PerfilInversiones',
+      timestamps: true,
     }
   );
 

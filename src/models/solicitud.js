@@ -4,7 +4,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Solicitud extends Model {
     static associate(models) {
-      // Relación con PerfilInversion
       Solicitud.belongsTo(models.PerfilInversion, {
         foreignKey: 'id_perfil_inversion',
         as: 'perfilInversion',
@@ -44,7 +43,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Solicitud',
       tableName: 'Solicitudes',
       timestamps: true,
-      underscored: true,
     }
   );
 

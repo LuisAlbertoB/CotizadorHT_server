@@ -4,16 +4,14 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class PerfilFuncionalidad extends Model {
     static associate(models) {
-      // Relación con el modelo 'Funcionalidad'
       PerfilFuncionalidad.belongsTo(models.Funcionalidad, {
-        foreignKey: 'id_funcionalidad', // Clave foránea en 'PerfilFuncionalidades'
-        as: 'funcionalidad', // Alias de la relación
+        foreignKey: 'id_funcionalidad',
+        as: 'funcionalidad',
       });
 
-      // Relación con el modelo 'PerfilInversion'
       PerfilFuncionalidad.belongsTo(models.PerfilInversion, {
-        foreignKey: 'id_perfil', // Clave foránea en 'PerfilFuncionalidades'
-        as: 'perfil', // Alias de la relación
+        foreignKey: 'id_perfil',
+        as: 'perfil',
       });
     }
   }
@@ -24,16 +22,16 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'Funcionalidades', // Nombre de la tabla referenciada
-          key: 'id', // Columna clave primaria
+          model: 'Funcionalidades',
+          key: 'id',
         },
       },
       id_perfil: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'PerfilInversiones', // Nombre de la tabla referenciada
-          key: 'id', // Columna clave primaria
+          model: 'PerfilInversiones',
+          key: 'id',
         },
       },
     },
@@ -42,7 +40,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'PerfilFuncionalidad',
       tableName: 'PerfilFuncionalidades',
       timestamps: true,
-      underscored: true,
     }
   );
 
