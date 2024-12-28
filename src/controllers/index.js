@@ -5,6 +5,7 @@ const perfilFuncionalidadController = require('./perfilFuncionalidadController')
 const solicitudController = require('./solicitudController');
 const preguntaController = require('./preguntaController');
 const respuestaController = require('./respuestaController');
+const solicitudController = require('./solicitudController');
 const solicitudrespuestaController = require('./solicitudrespuestaController');
 
 module.exports = {
@@ -13,5 +14,6 @@ module.exports = {
   perfilInversionController,
   perfilFuncionalidadController,
   respuestaController,
+  solicitudController,
   solicitudrespuestaController
 };

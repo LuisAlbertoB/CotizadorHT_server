@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      anotations: { // Nuevo campo
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       id_perfil_inversion: {
         type: DataTypes.INTEGER,
         allowNull: true,

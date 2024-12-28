@@ -1,13 +1,13 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Solicitudes', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
       },
       company_name: {
         type: Sequelize.STRING,
@@ -29,8 +29,13 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      anotations: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       id_perfil_inversion: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
           model: 'PerfilInversiones',
           key: 'id',
@@ -39,16 +44,19 @@ module.exports = {
         onDelete: 'SET NULL',
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
       },
     });
   },
-  async down(queryInterface, Sequelize) {
+
+  async down(queryInterface) {
     await queryInterface.dropTable('Solicitudes');
   },
 };

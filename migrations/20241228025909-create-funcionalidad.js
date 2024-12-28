@@ -1,13 +1,13 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Funcionalidades', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
       },
       tag: {
         type: Sequelize.STRING,
@@ -18,35 +18,37 @@ module.exports = {
         allowNull: true,
       },
       developmentTime: {
-        type: Sequelize.INTEGER, // Número de horas o días estimado para el desarrollo
+        type: Sequelize.INTEGER,
         allowNull: true,
       },
       developmentRate: {
-        type: Sequelize.INTEGER, // Tarifa de desarrollo, puede ser en valor monetario o por hora
+        type: Sequelize.INTEGER,
         allowNull: true,
       },
       idModulo: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: {
           model: 'Modulos',
           key: 'id',
         },
-        allowNull: false,
-        onDelete: 'CASCADE', // Si se elimina un modulo, las funcionalidades asociadas se eliminarán también
-        onUpdate: 'CASCADE', // Si se actualiza el modulo, se reflejará en la funcionalidad
+        onUpdate: 'CASCADE',  // Si se actualiza un Modulo, también se actualiza en Funcionalidades
+        onDelete: 'SET NULL', // Si se elimina un Modulo, se pone en NULL el idModulo
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'), // Establecer valor por defecto
       },
       updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'), // Establecer valor por defecto
+      },
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable('Funcionalidades');
-  }
+  },
 };

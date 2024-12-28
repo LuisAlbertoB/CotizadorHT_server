@@ -1,44 +1,46 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Respuestas', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
       },
       id_pregunta: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Preguntas', // Nombre de la tabla referenciada
-          key: 'id'           // Columna que se referencia
+          model: 'Preguntas', // Referencia a la tabla Preguntas
+          key: 'id',
         },
-        onDelete: 'CASCADE',  // Acción cuando se elimina un registro de Preguntas
-        onUpdate: 'CASCADE'   // Acción cuando se actualiza el registro de Preguntas
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       answer: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
       value: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        defaultValue: Sequelize.fn('now'),
+      },
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface) {
     await queryInterface.dropTable('Respuestas');
-  }
+  },
 };

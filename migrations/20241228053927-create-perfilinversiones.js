@@ -1,38 +1,52 @@
-// migrations/20241220010432-create-perfil-inversion.js
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('PerfilInversiones', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
       },
       tag: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       description: {
         type: Sequelize.STRING,
+        allowNull: true,
       },
       min_score_threshold: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
       max_score_threshold: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      tarifa_usd: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
+      },
+      variation_rate: {
+        type: Sequelize.FLOAT,
+        allowNull: true,
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
-        allowNull: false,
         type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.fn('now'),
       },
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('PerfilInversiones'); // Corrección aquí
+
+  async down(queryInterface) {
+    await queryInterface.dropTable('PerfilInversiones');
   },
 };
